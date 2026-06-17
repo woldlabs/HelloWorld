@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HelloWorld • WoldLabs</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
+    
+    :root {
+      --primary: #3b82f6;
+    }
+    
+    body {
+      font-family: 'Inter', system_ui, sans-serif;
+    }
+    
+    .font-display {
+      font-family: 'Space Grotesk', 'Inter', sans-serif;
+      font-weight: 600;
+    }
+
+    .hello-text {
+      font-size: 4.5rem;
+      line-height: 1;
+      font-weight: 700;
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .subtitle {
+      animation: fadeInUp 1s ease 0.2s forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .greeting-card {
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+    }
+
+    .greeting-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    }
+
+    .woldlabs-badge {
+      background: linear-gradient(135deg, #1e2937, #334155);
+      color: white;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+    }
+
+    .action-btn {
+      transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+    }
+    
+    .action-btn:hover {
+      transform: scale(1.03);
+    }
+
+    .sparkle {
+      animation: sparkle 1.5s ease infinite;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-200">
+  <div class="min-h-screen flex items-center justify-center p-6">
+    <div class="max-w-md w-full">
+      <!-- Header -->
+      <div class="flex items-center justify-between mb-8">
+        <div class="flex items-center gap-x-3">
+          <div class="w-9 h-9 bg-blue-600 rounded-2xl flex items-center justify-center">
+            <i class="fa-solid fa-globe text-white text-xl"></i>
+          </div>
+          <div>
+            <span class="font-semibold tracking-tight text-xl">WoldLabs</span>
+          </div>
+        </div>
+        <div class="woldlabs-badge">
+          <i class="fa-solid fa-rocket text-emerald-400"></i>
+          <span class="font-medium">v1.0.0</span>
+        </div>
+      </div>
+
+      <!-- Main Card -->
+      <div class="greeting-card bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-2xl">
+        <div class="text-center">
+          <!-- Hello World -->
+          <div class="mb-2">
+            <span id="greeting" class="hello-text block">Hello, World!</span>
+          </div>
+          
+          <p id="subtitle" class="subtitle text-lg text-slate-400 font-light tracking-tight">
+            from <span class="font-semibold text-blue-400">WoldLabs</span>
+          </p>
+
+          <!-- Status -->
+          <div class="mt-6 mb-8 inline-flex items-center gap-x-2 px-4 py-1.5 bg-slate-950 border border-slate-800 rounded-2xl text-sm">
+            <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+            <span class="text-emerald-300 font-medium text-xs tracking-widest">ONLINE</span>
+          </div>
+
+          <!-- Interactive Controls -->
+          <div class="space-y-3">
+            <button 
+              onclick="changeGreeting()"
+              class="action-btn w-full flex items-center justify-center gap-x-2 px-6 py-3.5 bg-white hover:bg-slate-100 text-slate-900 font-semibold rounded-2xl transition-all active:scale-[0.985]">
+              <i class="fa-solid fa-sync-alt"></i>
+              <span>Change Greeting</span>
+            </button>
+
+            <div class="grid grid-cols-2 gap-3">
+              <button 
+                onclick="sayHello()"
+                class="action-btn flex items-center justify-center gap-x-2 px-5 py-3 bg-slate-800 hover:bg-slate-700 border border-slate-700 font-medium rounded-2xl text-sm transition-all">
+                <i class="fa-solid fa-hand-wave"></i>
+                <span>Say Hello</span>
+              </button>
+              
+              <button 
+                onclick="triggerConfetti()"
+                class="action-btn flex items-center justify-center gap-x-2 px-5 py-3 bg-slate-800 hover:bg-slate-700 border border-slate-700 font-medium rounded-2xl text-sm transition-all">
+                <i class="fa-solid fa-magic"></i>
+                <span>Surprise</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer info -->
+      <div class="mt-8 flex flex-col items-center text-center">
+        <div class="text-[10px] text-slate-500 tracking-[2px] font-mono">WOLDLABS / HELLOWORLD</div>
+        <div class="mt-1 text-xs text-slate-600">A minimal demo application</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function tailwindInit() {
+      document.documentElement.style.setProperty('--accent', '#3b82f6');
+    }
+    
+    let greetings = [
+      'Hello, World!',
+      'Hola, Mundo!',
+      'Bonjour, le Monde!',
+      'Hallo, Welt!',
+      '你好，世界!',
+      'Ciao, Mondo!',
+      'Konnichiwa, Sekai!',
+      'Hello from the Lab!'
+    ];
+    let currentIndex = 0;
+
+    function changeGreeting() {
+      const greetingEl = document.getElementById('greeting');
+      currentIndex = (currentIndex + 1) % greetings.length;
+      
+      // Animate out
+      greetingEl.style.transition = 'all 0.15s ease';
+      greetingEl.style.opacity = '0';
+      greetingEl.style.transform = 'translateY(8px)';
+      
+      setTimeout(() => {
+        greetingEl.textContent = greetings[currentIndex];
+        greetingEl.style.transition = 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
+        greetingEl.style.opacity = '1';
+        greetingEl.style.transform = 'translateY(0)';
+        
+        // occasional color shift for fun
+        if (currentIndex % 3 === 0) {
+          greetingEl.style.background = 'linear-gradient(90deg, #8b5cf6, #ec4899)';
+        } else {
+          greetingEl.style.background = 'linear-gradient(90deg, #3b82f6, #8b5cf6)';
+        }
+        greetingEl.style.webkitBackgroundClip = 'text';
+        greetingEl.style.webkitTextFillColor = 'transparent';
+      }, 160);
+    }
+
+    function sayHello() {
+      const subtitle = document.getElementById('subtitle');
+      const original = subtitle.innerHTML;
+      
+      subtitle.style.transition = 'all .2s ease';
+      subtitle.innerHTML = `Hello there, <span class="font-semibold text-blue-400">explorer</span>!`;
+      
+      // Restore after delay
+      setTimeout(() => {
+        subtitle.style.transition = 'all .3s ease';
+        subtitle.innerHTML = original;
+      }, 1800);
+    }
+
+    function triggerConfetti() {
+      const colors = ['#3b82f6', '#8b5cf6', '#ec4899', '#22c55e'];
+      const card = document.querySelector('.greeting-card');
+      
+      for (let i = 0; i < 40; i++) {
+        setTimeout(() => {
+          const particle = document.createElement('div');
+          particle.style.position = 'absolute';
+          particle.style.width = '6px';
+          particle.style.height = '6px';
+          particle.style.borderRadius = '50%';
+          particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+          particle.style.left = Math.random() * 100 + '%';
+          particle.style.top = '-10px';
+          particle.style.pointerEvents = 'none';
+          particle.style.zIndex = '50';
+          particle.style.opacity = Math.random() + 0.4;
+          
+          card.style.position = 'relative';
+          card.appendChild(particle);
+          
+          const duration = Math.random() * 1200 + 900;
+          const xDrift = (Math.random() - 0.5) * 80;
+          
+          particle.animate([
+            { 
+              transform: `translateY(0) translateX(0)`, 
+              opacity: particle.style.opacity 
+            },
+            { 
+              transform: `translateY(${card.offsetHeight + 60}px) translateX(${xDrift}px)`, 
+              opacity: 0 
+            }
+          ], {
+            duration: duration,
+            easing: 'cubic-bezier(0.22, 1, 0.36, 1)'
+          }).onfinish = () => particle.remove();
+        }, i * 1.5);
+      }
+    }
+
+    // Keyboard support
+    function setupKeyboard() {
+      document.addEventListener('keydown', function(e) {
+        if (e.key === '/' && document.activeElement.tagName === 'BODY') {
+          e.preventDefault();
+          changeGreeting();
+        }
+        if (e.key.toLowerCase() === 'c') {
+          triggerConfetti();
+        }
+      });
+      
+      // Easter egg: type "hello"
+      let typed = '';
+      document.addEventListener('keypress', function(e) {
+        typed += e.key.toLowerCase();
+        if (typed.length > 6) typed = typed.slice(-6);
+        if (typed.includes('hello')) {
+          sayHello();
+          typed = '';
+        }
+      });
+    }
+
+    // Boot
+    function init() {
+      tailwindInit();
+      setupKeyboard();
+      
+      // Subtle initial animation hint
+      const greeting = document.getElementById('greeting');
+      setTimeout(() => {
+        greeting.style.transition = 'transform 1.2s cubic-bezier(0.34,1.56,.64,1), opacity .6s';
+      }, 800);
+      
+      // Random fun: auto confetti once after load (subtle)
+      setTimeout(() => {
+        if (Math.random() > 0.7) {
+          // small burst only
+          const smallBurst = document.querySelector('.greeting-card');
+          for (let i = 0; i < 8; i++) {
+            setTimeout(() => {
+              const p = document.createElement('div');
+              p.style.cssText = `position:absolute;width:4px;height:4px;border-radius:50%;background:#64748b;left:${30 + Math.random()*40}%;top:30%;pointer-events:none;z-index:40;opacity:0.5`;
+              smallBurst.appendChild(p);
+              p.animate([
+                {transform:'translateY(0)', opacity:0.5},
+                {transform:'translateY(90px)', opacity:0}
+              ], {duration: 650, easing:'ease-out'}).onfinish = () => p.remove();
+            }, i*18);
+          }
+        }
+      }, 1450);
+
+      // Accessibility note in console
+      console.log('%c[HelloWorld] Press / to change greeting, C for confetti, or type "hello"', 'color:#64748b');
+    }
+
+    window.onload = init;
+  </script>
+</body>
+</html>
