@@ -1,9 +1,32 @@
-# Byte-compiled / optimized / DLL files
+# =============================================================================
+# .gitignore for WoldLabs HelloWorld (x86-64 Assembly)
+# =============================================================================
+
+# Build artifacts from NASM + ld
+*.o
+hello
+hello.exe
+
+# Python artifacts (from previous versions of this project)
 __pycache__/
 *.py[cod]
 *$py.class
 
-# Environments
+# Common editor / IDE noise
+.idea/
+.vscode/
+*.swp
+*~
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.log
+
+# Virtual environments (kept for historical completeness)
 .env
 .venv
 env/
@@ -11,23 +34,3 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-
-# IDE / editor
-.idea/
-.vscode/
-*.swp
-.DS_Store
-
-# Logs
-*.log
-
-# Build / distribution
-build/
-dist/
-*.egg-info/
-
-# OS
-Thumbs.db
-
-# Misc
-*.tmp
