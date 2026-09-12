@@ -1,0 +1,44 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Makefile targets
+        run: |
+          set -euo pipefail
+          grep -q '^all:' Makefile
+          grep -q '^clean:' Makefile
+          grep -q '^run:' Makefile
+          grep -q 'nasm' Makefile
+          grep -q 'elf64' Makefile
+
+      - name: Linux syscalls in hello.asm
+        run: |
+          set -euo pipefail
+          grep -q 'global _start' hello.asm
+          grep -E 'mov[[:space:]]+rax,[[:space:]]*1' hello.asm
+          grep -E 'mov[[:space:]]+rax,[[:space:]]*60' hello.asm
+
+      - name: Install NASM
+        run: sudo apt-get update && sudo apt-get install -y nasm
+
+      - name: Build and run
+        run: |
+          set -euo pipefail
+          make
+          test -x ./hello
+          ./hello | grep -F "Hello, World! <3 from Wold Labs"
+          make clean
+          test ! -e ./hello
+          test ! -e ./hello.o
