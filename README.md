@@ -32,6 +32,7 @@ sudo apt update && sudo apt install nasm build-essential
 ```bash
 make
 ./hello
+# or: make run
 ```
 
 You will see:
@@ -142,6 +143,10 @@ This 1.5 KB program does what a `printf` call hides behind thousands of lines of
 ## Build Artifacts
 
 The `Makefile` makes the experience pleasant for students while still showing the raw `nasm` + `ld` commands.
+
+## License
+
+MIT License. See [LICENSE](LICENSE).
 
 ## Credits
 

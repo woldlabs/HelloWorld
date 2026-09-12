@@ -93,7 +93,7 @@ _start:
 ; ------------------------------------------------------------------------------
 ; Student Notes & Experiments
 ; ------------------------------------------------------------------------------
-; 1. The entire useful program is  the two mov + syscall blocks above.
+; 1. The entire useful program is the two mov + syscall blocks above.
 ; 2. Try changing the string in .data and reassembling. The length updates automatically.
 ; 3. Try writing to stderr instead: change the first "mov rdi, 1" to "mov rdi, 2".
 ; 4. What happens if you forget the 0x0A newline?
